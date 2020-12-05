@@ -20,7 +20,7 @@ export class GroceriesServiceService {
 
   private dataChangeSubject: Subject<boolean>;
 
-  baseURL = "http://192.168.1.104:8080"
+  baseURL = "https://groceries-server-ericholsen.herokuapp.com"
 
   constructor(public http: HttpClient) {
     console.log('Hello GroceriesService Service');
