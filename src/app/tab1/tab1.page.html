@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{title}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" padding>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!--only shows if list is empty-->
+  <ion-item class="ion-text-center" *ngIf="items.length == 0">
+     <ion-label>List is empty.</ion-label>
+  </ion-item>
+
+  <!-- List of Sliding Items 
+  #slidingItem is to enable ability to close slider in ts files-->
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let item of items; let i = index">
+      <ion-item>
+        <ion-label>{{item.name}}</ion-label>
+        <p>{{item.quantity}}</p>
+      </ion-item>
+      <ion-item-options>
+
+        <ion-button (click)="editItem(item, i, slidingItem)" ion-button color="primary" icon-start>
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+
+        <ion-button (click)="shareItem(item, i, slidingItem)" ion-button color="secondary" icon-start>
+          <ion-icon name="share"></ion-icon>
+        </ion-button>
+
+        <ion-button (click)="removeItem(item, i)" ion-button color="danger" icon-start>
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+
+>      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addItem()" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
